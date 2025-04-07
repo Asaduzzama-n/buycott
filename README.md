@@ -1,50 +1,140 @@
-# Welcome to your Expo app 👋
+# Buycott 🌍🛡️
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A social impact mobile application that empowers users to make informed purchasing decisions by boycotting products from companies supporting harmful activities.
 
-## Get started
+## Features
 
-1. Install dependencies
+### Onboarding Experience
 
-   ```bash
-   npm install
-   ```
+- Educational onboarding screens highlighting important causes
+- Inspirational Islamic Hadith to motivate users
+- Awareness about social and political issues
 
-2. Start the app
+### Product Information
 
-   ```bash
-    npx expo start
-   ```
+- Comprehensive boycotted product list
+- Verified alternative product suggestions
+- Detailed product information including manufacturer details
+- Brand-specific boycotted product listings
 
-In the output, you'll find options to open the app in a
+### Product Scanner
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- QR/Barcode scanning functionality
+- Instant verification of product status
+- Alternative product recommendations
+- Real-time product updates
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+### Community Features
 
-## Get a fresh project
+- Verified user system for alternative product submissions
+- Voting system for alternative solutions
+- Commenting functionality for verified users
+- Trust-based content moderation
 
-When you're ready, run:
+### User Authentication
+
+- Secure user registration and login
+- Verified user status for content creation
+- Account-based voting and commenting system
+
+## Tech Stack
+
+- **Framework**: React Native with Expo
+- **Navigation**: Expo Router
+- **Styling**: Tailwind CSS with NativeWind
+- **UI Components**: React Native built-in components
+- **Icons**: Expo Vector Icons
+- **Camera**: Expo Camera
+- **System Integration**: Various Expo packages (haptics, status bar, etc.)
+
+## Backend Architecture
+
+### Data Collections
+
+- **Products**: Stores scanned product information
+- **Boycotted Products**: Verified list of products to boycott
+- **Alternative Solutions**: User-submitted alternative products
+- **Islamic Hadith**: Collection of inspirational Hadith
+- **Users**: User authentication and verification status
+
+### Security Features
+
+- Admin/trusted user verification system
+- Content moderation workflow
+- Product verification process
+- User authentication system
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v18 or higher)
+- Expo CLI
+- A mobile device or emulator (Android/iOS)
+
+### Installation
+
+1. Clone the repository:
 
 ```bash
-npm run reset-project
+git clone <repository-url>
+cd Buycott
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+2. Install dependencies:
 
-## Learn more
+```bash
+npm install
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+3. Start the development server:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```bash
+npm start
+```
 
-## Join the community
+### Running the App
 
-Join our community of developers creating universal apps.
+- For Android: `npm run android`
+- For iOS: `npm run ios`
+- For Web: `npm run web`
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Project Structure
+
+```
+Buycott/
+├── app/                 # Main application routes and screens
+│   ├── onboarding/     # Onboarding screens
+│   ├── home/           # Home screen with product listings
+│   └── scanner/        # Product scanning functionality
+├── components/         # Reusable UI components
+├── constants/          # Application constants
+├── hooks/             # Custom React hooks
+├── assets/            # Static assets (images, fonts, etc.)
+├── types/             # TypeScript type definitions
+└── utils/             # Utility functions
+```
+
+## Development
+
+### Available Scripts
+
+- `npm start`: Start the development server
+- `npm run android`: Run on Android device/emulator
+- `npm run ios`: Run on iOS device/simulator
+- `npm run web`: Run in web browser
+- `npm test`: Run tests
+- `npm run lint`: Run ESLint
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+# buycott
