@@ -3,6 +3,7 @@ import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import GeneralStat from '@/components/ui/general-stat'
 import TrendingBoycottedProducts from '@/components/ui/trending-boycotted-product'
+import TrendingAlternativeProducts from '@/components/ui/trending-alternative-product'
 
 const Home = () => {
   return (
@@ -14,7 +15,7 @@ const Home = () => {
 
         <ScrollView>
         <TrendingBoycottedProducts />
-        <TrendingBoycottedProducts />
+        <TrendingAlternativeProducts />
         </ScrollView>
 
 

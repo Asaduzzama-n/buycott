@@ -5,42 +5,37 @@ import { Colors } from '@/constants/Colors'
 import ProductCard from './productCard'
 import DetailsModal from './details-modal'
 
+const TrendingAlternativeProducts = () => {
+    const [selectedItem, setSelectedItem] = useState<any>(null);
+    const [modalVisible, setModalVisible]= useState(false)
 
-const TrendingBoycottedProducts = () => {
-
-    const [selectedItem, setSelectedItem] = useState<IProductData | null>(null);
-    const [modalVisible, setModalVisible] = useState(false);
-
-    const handlePress = (data: IProductData) => {
+    const handlePress = (data:any) =>{
         setSelectedItem(data);
-        setModalVisible(true);
+        setModalVisible(true)
+
     }
 
     const handleClose = () => {
-        setModalVisible(false);
-        setSelectedItem(null);
+        setModalVisible(false)
+        setSelectedItem(null)
     }
 
   return (
     <View style={styles.container}>
-    <View>
+     <View>
         <Text style={styles.headingText}>Trending Boycotted Products</Text>
-    </View>
-    <View style={styles.cardContainer}>
-        <ProductCard 
-            data={productData} 
-            isBoycotted={true} 
-            handlePress={handlePress} 
-        />
-    </View>
-    {selectedItem && (
+     </View>
+     <View style={styles.cardContainer}>
+        <ProductCard data={productData} isBoycotted={false} handlePress={handlePress} />
+     </View>
+     {selectedItem && (
         <DetailsModal
             visible={modalVisible} 
             onClose={handleClose} 
             data={selectedItem} 
         />
     )}
-</View>
+    </View>
   )
 }
 
@@ -86,4 +81,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default TrendingBoycottedProducts
+export default TrendingAlternativeProducts
