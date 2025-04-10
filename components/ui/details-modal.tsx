@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
         marginTop: 'auto',
     },
     primaryButton: {
-        backgroundColor: Colors.light.tint,
+        backgroundColor: Colors.light.preferedFG,
         padding: 15,
         borderRadius: 10,
         alignItems: 'center',
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
     },
     secondaryButton: {
         borderWidth: 1,
-        borderColor: Colors.light.tint,
+        borderColor: Colors.light.preferedFG,
         padding: 15,
         borderRadius: 10,
         alignItems: 'center',
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
         marginRight: 10,
     },
     secondaryButtonText: {
-        color: Colors.light.tint,
+        color: Colors.light.preferedFG,
         fontWeight: 'bold',
     },
 });
