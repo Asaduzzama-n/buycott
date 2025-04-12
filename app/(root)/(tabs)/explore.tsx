@@ -1,5 +1,5 @@
-import { View, Text, TextInput, FlatList, StyleSheet, TouchableOpacity, Animated } from 'react-native'
-import React, { useRef, useState } from 'react'
+import { View, Text, TextInput, FlatList, StyleSheet, TouchableOpacity, Animated, Image } from 'react-native'
+import React, { useEffect, useRef, useState } from 'react'
 import { IProductData, productData } from '@/utils/main';
 import ProductCard from '@/components/ui/productCard';
 import { Colors } from '@/constants/Colors';
@@ -7,12 +7,18 @@ import { SCREEN_WIDTH } from '@/constants/dimension';
 import { Feather } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import RenderExploreCard from '@/components/ui/explore-card';
+import DetailsModal from '@/components/ui/details-modal';
 
 const Explore = () => {
   const [searchText, setSearchText] = useState('')
   const [selectedFilter, setSelectedFilter] = useState<'product' | 'brand' | 'alternative'>('product')
   const [dropdownVisible, setDropdownVisible] = useState(false)
   const rotateAnim = useRef(new Animated.Value(0)).current
+
+  const scrollRef = useRef<FlatList<IProductData>>(null)
+
+
 
   const toggleDropdown = () => {
     if (dropdownVisible) {
@@ -41,15 +47,52 @@ const Explore = () => {
     toggleDropdown()
   }
 
-  const handlePress = (data: IProductData) => {
-    console.log('first')
-  }
+
 
   const filterOptions = [
     { label: 'Product', value: 'product', icon: 'package' },
     { label: 'Brand', value: 'brand', icon: 'tag' },
     { label: 'Alternative', value: 'alternative', icon: 'refresh-cw' }
   ]
+
+
+  const filteredData = productData.filter(item => {
+    if (selectedFilter === 'product') {
+      return item.name.toLowerCase().includes(searchText.toLowerCase())
+    } else if (selectedFilter === 'brand') {
+      return item.brandName.toLowerCase().includes(searchText.toLowerCase())
+    } else{
+      return item
+    }
+  })
+
+  const animatedValue = useRef(new Animated.Value(0)).current
+
+  useEffect(() => {
+    Animated.timing(animatedValue,{
+      toValue: 1,
+      duration: 200,
+      useNativeDriver: true
+    }).start()
+  }, [filteredData])
+
+  const [selectedItem, setSelectedItem] = useState<IProductData | null>(null);
+const [modalVisible, setModalVisible] = useState(false);
+
+  const handlePress = (data: IProductData) => {
+        setSelectedItem(data);
+        setModalVisible(true)
+
+    }
+
+    const handleClose = () => {
+        setModalVisible(false)
+        setSelectedItem(null)
+    }
+
+
+
+
 
 
 
@@ -126,22 +169,32 @@ const Explore = () => {
         )}
       </View>
 
-      <FlatList
+      {/* <View>
+        <Text>{selectedFilter}</Text>
+        <Text>{searchText}</Text>
+      </View> */}
+
+      <Animated.FlatList
         keyExtractor={(item) => item.name}
         numColumns={2}
         contentContainerStyle={styles.listContainer}
         columnWrapperStyle={styles.columnWrapper}
-        data={productData}
-        style={{flex:1}}
-        renderItem={({item, index}) => (
-            <ProductCard
-                data={item}
-                isBoycotted={false}
-                handlePress={handlePress}
-            />
-        )}
+        showsVerticalScrollIndicator={false}
+        bounces={false}
+        ref={scrollRef}
 
+        data={filteredData}
+        renderItem={({item, index}) => (
+         <RenderExploreCard item={item} index={index} handlePress={handlePress} />
+        )}
       />
+      {selectedItem && (
+        <DetailsModal
+            visible={modalVisible}
+            onClose={handleClose}
+            data={selectedItem}
+        />
+    )}
     </SafeAreaView>
   )
 }
@@ -235,6 +288,11 @@ const styles = StyleSheet.create({
   columnWrapper: {
     justifyContent: 'space-between',
     marginBottom: 15,
+  },
+  imageContainer: {
+    width: SCREEN_WIDTH/2 - 45,
+    height: SCREEN_WIDTH/2 - 45,
+    borderRadius: 10
   },
 })
 
